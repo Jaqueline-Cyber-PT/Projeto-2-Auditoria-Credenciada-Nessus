@@ -1,0 +1,46 @@
+INFO: BloodHound.py for BloodHound LEGACY (BloodHound 4.2 and 4.3)
+INFO: Found AD domain: pixelforge.internal
+INFO: Getting TGT for user
+INFO: Connecting to LDAP server: pf-dc01.pixelforge.internal
+WARNING: LDAP Authentication is refused because LDAP signing is enabled. Trying to connect over LDAPS instead...
+WARNING: Kerberos auth to LDAP failed, trying NTLM
+Traceback (most recent call last):
+  File "/usr/bin/bloodhound-python", line 33, in <module>
+    sys.exit(load_entry_point('bloodhound==1.9.0', 'console_scripts', 'bloodhound-python')())
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/bloodhound/__init__.py", line 347, in main
+    bloodhound.run(collect=collect,
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+                   num_workers=args.workers,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+                   exclude_dcs=args.exclude_dcs,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   fileNamePrefix=args.outputprefix)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/bloodhound/__init__.py", line 78, in run
+    self.pdc.prefetch_info('objectprops' in collect, 'acl' in collect, cache_computers=do_computer_enum)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/bloodhound/ad/domain.py", line 620, in prefetch_info
+    self.get_objecttype()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/bloodhound/ad/domain.py", line 303, in get_objecttype
+    self.ldap_connect()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/bloodhound/ad/domain.py", line 114, in ldap_connect
+    ldap = self.ad.auth.getLDAPConnection(hostname=self.hostname, ip=ip,
+                                          baseDN=self.ad.baseDN, protocol=protocol)
+  File "/usr/lib/python3/dist-packages/bloodhound/ad/authentication.py", line 176, in getLDAPConnection
+    return self.getLDAPConnection(hostname, ip, baseDN, 'ldaps')
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/bloodhound/ad/authentication.py", line 164, in getLDAPConnection
+    bound = conn.bind()
+  File "/usr/lib/python3/dist-packages/ldap3/core/connection.py", line 589, in bind
+    self.open(read_server_info=False)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/ldap3/strategy/sync.py", line 57, in open
+    BaseStrategy.open(self, reset_usage, read_server_info)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/ldap3/strategy/base.py", line 154, in open
+    raise LDAPSocketOpenError('invalid server address')
+ldap3.core.exceptions.LDAPSocketOpenError: invalid server address
