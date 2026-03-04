@@ -57,6 +57,6 @@ A maior vulnerabilidade encontrada não foi um software desatualizado, mas sim a
 
 Com as vulnerabilidades de patch e as fragilidades de GPO (política de senhas) mapeadas, o próximo estágio deste laboratório focará na **Exploração e Movimentação Lateral**. Utilizaremos os dados extraídos via RPC para realizar ataques de *Brute Force* direcionados e testar a eficácia dos controles de detecção do Windows Server, simulando o comportamento real de um atacante após a fase de reconhecimento.
 
-
+"Observação: Devido às limitações da licença Essentials, a exportação detalhada foi consolidada através do dashboard de vulnerabilidades e logs técnicos, cujas evidências estão anexadas na pasta /evidencias."
 
 
